@@ -4,7 +4,7 @@ const initialData = {
     'task-2': { id: 'task-2', content: "Create add task form" },
     'task-3': { id: 'task-3', content: "Create add task form" },
     'task-4': { id: 'task-4', content: "Create task" },
-    'task-5': { id: 'task-5', content: "style" },
+    'task-5': { id: 'task-5', content: "Style" },
   },
   columns: {
     'column-1': {

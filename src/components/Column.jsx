@@ -7,7 +7,7 @@ export class Column extends Component {
     return (
       <div className="column">
         <header className="column-title">{column.title}</header>
-        <TaskList tasks={tasks} />
+        <TaskList className="task-list" tasks={tasks} />
       </div>
     )
   }

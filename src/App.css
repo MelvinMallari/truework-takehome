@@ -127,3 +127,32 @@ table {
   border-collapse: collapse;
   border-spacing: 0;
 }
+
+.column {
+  border: 1px solid lightgrey;
+  border-radius: 4px;
+  padding: 10px;
+  margin: 10px;
+}
+
+.column-title {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 8px;
+}
+
+.columns-wrapper {
+  display: flex;
+}
+
+.form-wrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+.task-item {
+  border: 1px solid lightgrey;
+  border-radius: 2px;
+  padding: 10px;
+  margin-bottom: 10px;
+}
