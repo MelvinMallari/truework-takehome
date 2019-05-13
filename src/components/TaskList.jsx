@@ -1,10 +1,16 @@
+import React from 'react';
 import Task from './Task';
-import React from 'react'
 
 function TaskList(props) {
+  const { delTask, columnId } = props;
   return (
-    <div> {props.tasks.map(task => <Task task={task} />)} </div>
-  )
+    <div>
+      {' '}
+      {props.tasks.map(task => (
+        <Task task={task} key={task.id} delTask={delTask} columnId={columnId} />
+      ))}{' '}
+    </div>
+  );
 }
 
-export default TaskList
+export default TaskList;

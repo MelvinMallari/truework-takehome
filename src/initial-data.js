@@ -6,6 +6,7 @@ const initialData = {
     'task-4': { id: 'task-4', content: "Create task" },
     'task-5': { id: 'task-5', content: "Style" },
   },
+
   columns: {
     'column-1': {
       id: 'column-1',
@@ -13,6 +14,7 @@ const initialData = {
       taskIds: ['task-1', 'task-2', 'task-3', 'task-4', 'task-5']
     }
   },
+
   columnOrder: ['column-1'],
 }
 
