@@ -32,7 +32,7 @@ export class App extends Component {
     }
   }
 
-  addTask = newTask => {
+  addTask = (newTask, columnId) => {
     const { tasks, columns } = this.state;
     const newTasks = Object.assign({}, tasks);
     const newColumns = Object.assign({}, columns);
@@ -41,9 +41,8 @@ export class App extends Component {
     newTasks[newTask.id] = { id: newTask.id, content: newTask.content };
 
     // Add task to todo column
-    const todoColumnId = 'column-1';
-    const oldTasks = newColumns[todoColumnId].taskIds;
-    newColumns[todoColumnId].taskIds = [...oldTasks, newTask.id];
+    const oldTasks = newColumns[columnId].taskIds;
+    newColumns[columnId].taskIds = [...oldTasks, newTask.id];
 
     this.setState({ tasks: newTasks, columns: newColumns });
   };
@@ -59,6 +58,21 @@ export class App extends Component {
     this.setState({ tasks: newTasks, columns: newColumns });
   };
 
+  moveNext = (taskId, columnId) => {
+    const { tasks, columns } = this.state;
+    const newColumns = Object.assign({}, columns);
+    // Remove from current column
+    const taskInd = newColumns[columnId].taskIds.indexOf(taskId);
+    newColumns[columnId].taskIds.splice(taskInd);
+
+    // Add to new Column
+    const newColIndex = parseInt(columnId.split('-')[1]) + 1;
+    const newColId = `column-${newColIndex}`;
+    const oldTasks = newColumns[newColId].taskIds;
+    newColumns[newColId].taskIds = [...oldTasks, taskId];
+    this.setState({ columns: newColumns });
+  }
+
   render() {
     const { columns, tasks, columnOrder } = this.state;
     return (
@@ -69,6 +83,7 @@ export class App extends Component {
           allTasks={tasks}
           columnOrder={columnOrder}
           delTask={this.delTask}
+          moveNext={this.moveNext}
         />
       </div>
     );

@@ -1,13 +1,13 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
 
 export class TaskForm extends Component {
   state = {
-    content: ""
-  }
+    content: ''
+  };
 
   onChange = e => {
     this.setState({ [e.target.name]: e.target.value });
-  }
+  };
 
   handleSubmit = e => {
     e.preventDefault();
@@ -15,11 +15,11 @@ export class TaskForm extends Component {
     const newTask = {
       id: `task-${newId}`,
       content: `${this.state.content}`
-    }
-    this.props.addTask(newTask);
-    this.setState({ [e.target.name]: "" });
-
-  }
+    };
+    this.setState({ content: '' });
+    const todoColumnId = 'column-1';
+    this.props.addTask(newTask, todoColumnId);
+  };
 
   render() {
     return (
@@ -30,12 +30,13 @@ export class TaskForm extends Component {
             placeholder="Add task..."
             name="content"
             value={this.state.content}
-            onChange={this.onChange} />
+            onChange={this.onChange}
+          />
           <input type="submit" value="Add" />
         </form>
       </div>
-    )
+    );
   }
 }
 
-export default TaskForm
+export default TaskForm;
