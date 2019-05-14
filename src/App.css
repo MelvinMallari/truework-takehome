@@ -128,6 +128,16 @@ table {
   border-spacing: 0;
 }
 
+.add-task-btn {
+  margin-top: 8px;
+}
+
+.button-wrapper {
+  margin-top: 8px;
+  display: flex;
+  justify-content: space-between;
+}
+
 .column {
   border: 1px solid lightgrey;
   border-radius: 4px;

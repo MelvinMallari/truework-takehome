@@ -14,14 +14,11 @@ export class App extends Component {
     const storedColumns = localStorage.getItem('columns');
     const storedColumnOrder = localStorage.getItem('columnOrder');
 
-    storedTasks &&
-      storedColumns &&
-      storedColumnOrder &&
-      this.setState({
-        tasks: JSON.parse(storedTasks),
-        columns: JSON.parse(storedColumns),
-        columnOrder: JSON.parse(storedColumnOrder)
-      });
+    storedTasks && storedColumns && storedColumnOrder && this.setState({
+      tasks: JSON.parse(storedTasks),
+      columns: JSON.parse(storedColumns),
+      columnOrder: JSON.parse(storedColumnOrder)
+    });
   }
 
   componentDidUpdate(prevState) {
@@ -82,7 +79,6 @@ export class App extends Component {
   movePrev = (taskId, columnId) => {
     this.moveCol(taskId, columnId, parseColId(columnId) - 1);
   }
-
 
   render() {
     const { columns, tasks, columnOrder, errors } = this.state;

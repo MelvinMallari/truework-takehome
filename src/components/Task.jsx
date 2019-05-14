@@ -18,9 +18,11 @@ function Task(props) {
   return (
     <div className="task-item">
       <div> {task.content} </div>
-      <button onClick={delTask.bind(this, task.id, columnId)}>Delete</button>
-      {parseColId(columnId) !== firstColId && renderPrev()}
-      {parseColId(columnId) !== lastColId && renderNext()}
+      <div className="button-wrapper">
+        <button onClick={delTask.bind(this, task.id, columnId)}>Delete</button>
+        {parseColId(columnId) !== firstColId && renderPrev()}
+        {parseColId(columnId) !== lastColId && renderNext()}
+      </div>
     </div>
   );
 }

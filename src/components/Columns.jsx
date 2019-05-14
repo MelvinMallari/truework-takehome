@@ -5,7 +5,8 @@ function Columns(props) {
   const { allTasks, columns, columnOrder, delTask, movePrev, moveNext } = props;
   return (
     <div className="columns-wrapper">
-      {columnOrder.map(columnId => {
+      {
+        columnOrder.map(columnId => {
         const column = columns[columnId];
         const tasks = column.taskIds.map(taskId => allTasks[taskId]);
         return <Column 
@@ -16,7 +17,8 @@ function Columns(props) {
                   delTask={delTask}
                   movePrev={movePrev}
                   moveNext={moveNext} />
-      })}
+      })
+      }
     </div>
   );
 }

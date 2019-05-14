@@ -10,13 +10,9 @@ export class TaskForm extends Component {
 
   handleSubmit = e => {
     e.preventDefault();
-    // const newId = Object.keys(this.props.tasks).length + 1;
-    const newTask = {
-      id: uuid.v4(),
-      content: this.state.content
-    };
-    this.setState({ content: '' });
+    const newTask = { id: uuid.v4(), content: this.state.content };
     const todoColumnId = 'column-1';
+    this.setState({ content: '' });
     this.props.addTask(newTask, todoColumnId);
   };
 
@@ -34,7 +30,7 @@ export class TaskForm extends Component {
             name="content"
             value={this.state.content}
             onChange={this.onChange} />
-          <input type="submit" value="Add" />
+          <input className="add-task-btn" type="submit" value="Add" />
           {this.renderErrors()}
         </form>
       </div>
