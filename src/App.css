@@ -128,6 +128,11 @@ table {
   border-spacing: 0;
 }
 
+body {
+  background: #57BEFF;
+  font-family: 'Roboto', sans-serif;
+}
+
 .add-task-btn {
   margin-top: 8px;
 }
@@ -188,7 +193,7 @@ table {
   box-shadow: 0 1px 0 rgba(9,30,66,.25);
   text-decoration: none;
   cursor: pointer;
-
+  border-radius: 2px;
 }
 
 .task-item {
@@ -204,8 +209,3 @@ table {
   margin-top: 8px;
 }
 
-
-body {
-  background: #57BEFF;
-  font-family: 'Roboto', sans-serif;
-}
