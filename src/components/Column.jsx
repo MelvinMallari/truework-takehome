@@ -1,11 +1,10 @@
-import React, { Component } from 'react';
 import TaskList from './TaskList';
+import React from 'react'
 
-export class Column extends Component {
-  render() {
-    const { column, columnOrder, tasks, delTask, movePrev, moveNext } = this.props;
-    return (
-      <div className="column">
+function Column(props) {
+  const { column, columnOrder, tasks, delTask, movePrev, moveNext } = props;
+  return (
+      <div className={`column ${column.id}`}>
         <header className="column-title">{column.title}</header>
         <TaskList 
           className="task-list" 
@@ -16,8 +15,8 @@ export class Column extends Component {
           movePrev={movePrev}
           moveNext={moveNext} />
       </div>
-    );
-  }
+  )
 }
+
 
 export default Column;

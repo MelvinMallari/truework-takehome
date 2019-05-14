@@ -26,11 +26,12 @@ export class TaskForm extends Component {
         <form className="form" onSubmit={this.handleSubmit}>
           <header className="column-title">Add Task</header>
           <textarea
+            className="task-input"
             placeholder="Add task..."
             name="content"
             value={this.state.content}
             onChange={this.onChange} />
-          <input className="add-task-btn" type="submit" value="Add" />
+          <input className="add-task-btn button" type="submit" value="Add" />
           {this.renderErrors()}
         </form>
       </div>
