@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import initialData from './initial-data';
 import Columns from './components/Columns';
 import TaskForm from './components/TaskForm';
+import { parseColId } from './utils/util';
 
 export class App extends Component {
   state = initialData;
@@ -33,9 +34,8 @@ export class App extends Component {
   }
 
   addTask = (newTask, columnId) => {
-    const { tasks, columns } = this.state;
-    const newTasks = Object.assign({}, tasks);
-    const newColumns = Object.assign({}, columns);
+    if (!newTask.content.length) { return; } 
+    const [newTasks, newColumns] = this.cloneState();
 
     // Add task to task slice
     newTasks[newTask.id] = { id: newTask.id, content: newTask.content };
@@ -44,13 +44,15 @@ export class App extends Component {
     const oldTasks = newColumns[columnId].taskIds;
     newColumns[columnId].taskIds = [...oldTasks, newTask.id];
 
-    this.setState({ tasks: newTasks, columns: newColumns });
+    this.setState({ tasks: newTasks, columns: newColumns, errors: false });
   };
 
+  cloneState = () => ( 
+    [Object.assign({}, this.state.tasks), Object.assign({}, this.state.columns)]
+  )
+
   delTask = (taskId, columnId) => {
-    const { tasks, columns } = this.state;
-    const newTasks = Object.assign({}, tasks);
-    const newColumns = Object.assign({}, columns);
+    const [newTasks, newColumns] = this.cloneState();
 
     delete newTasks[taskId];
     const oldTasks = newColumns[columnId].taskIds;
@@ -58,32 +60,40 @@ export class App extends Component {
     this.setState({ tasks: newTasks, columns: newColumns });
   };
 
-  moveNext = (taskId, columnId) => {
-    const { tasks, columns } = this.state;
-    const newColumns = Object.assign({}, columns);
+  moveCol = (taskId, columnId, newColIndex) => {
+    const newColumns = Object.assign({}, this.state.columns);
     // Remove from current column
     const taskInd = newColumns[columnId].taskIds.indexOf(taskId);
-    newColumns[columnId].taskIds.splice(taskInd);
+    newColumns[columnId].taskIds.splice(taskInd,1);
 
     // Add to new Column
-    const newColIndex = parseInt(columnId.split('-')[1]) + 1;
     const newColId = `column-${newColIndex}`;
     const oldTasks = newColumns[newColId].taskIds;
     newColumns[newColId].taskIds = [...oldTasks, taskId];
     this.setState({ columns: newColumns });
   }
 
+  moveNext = (taskId, columnId) => {
+    this.moveCol(taskId, columnId, parseColId(columnId) + 1);
+  }
+
+  movePrev = (taskId, columnId) => {
+    this.moveCol(taskId, columnId, parseColId(columnId) - 1);
+  }
+
+
   render() {
-    const { columns, tasks, columnOrder } = this.state;
+    const { columns, tasks, columnOrder, errors } = this.state;
     return (
       <div className="columns-wrapper">
-        <TaskForm tasks={tasks} addTask={this.addTask} />
+        <TaskForm tasks={tasks} addTask={this.addTask} errors={errors} />
         <Columns
           columns={columns}
           allTasks={tasks}
           columnOrder={columnOrder}
           delTask={this.delTask}
           moveNext={this.moveNext}
+          movePrev={this.movePrev}
         />
       </div>
     );

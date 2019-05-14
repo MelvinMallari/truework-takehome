@@ -21,6 +21,10 @@ export class TaskForm extends Component {
     this.props.addTask(newTask, todoColumnId);
   };
 
+  renderErrors() {
+    return this.props.errors ? <div>Please input valid task</div> : null
+  }
+
   render() {
     return (
       <div className="column">
@@ -33,6 +37,7 @@ export class TaskForm extends Component {
             onChange={this.onChange}
           />
           <input type="submit" value="Add" />
+          {this.renderErrors()}
         </form>
       </div>
     );

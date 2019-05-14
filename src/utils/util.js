@@ -1,0 +1,1 @@
+export const parseColId = (columnId) => (parseInt(columnId.split('-')[1]));

@@ -6,14 +6,15 @@ function Columns(props) {
   return (
     <div className="columns-wrapper">
       {columnOrder.map(columnId => {
-        console.log(columnId);
         const column = columns[columnId];
         const tasks = column.taskIds.map(taskId => allTasks[taskId]);
         return <Column 
                   key={column.id} 
                   column={column} 
+                  columnOrder={columnOrder}
                   tasks={tasks} 
                   delTask={delTask}
+                  movePrev={movePrev}
                   moveNext={moveNext} />
       })}
     </div>

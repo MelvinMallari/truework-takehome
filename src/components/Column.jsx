@@ -3,7 +3,7 @@ import TaskList from './TaskList';
 
 export class Column extends Component {
   render() {
-    const { column, tasks, delTask, movePrev, moveNext } = this.props;
+    const { column, columnOrder, tasks, delTask, movePrev, moveNext } = this.props;
     return (
       <div className="column">
         <header className="column-title">{column.title}</header>
@@ -12,6 +12,8 @@ export class Column extends Component {
           tasks={tasks} 
           delTask={delTask} 
           columnId={column.id}
+          columnOrder={columnOrder}
+          movePrev={movePrev}
           moveNext={moveNext} />
       </div>
     );
