@@ -133,6 +133,7 @@ table {
   border-radius: 4px;
   padding: 10px;
   margin: 10px;
+  width: 200px;
 }
 
 .column-title {
@@ -148,6 +149,12 @@ table {
 .form {
   display: flex;
   flex-direction: column;
+}
+
+.kanban-wrapper {
+  display: flex;
+  justify-content: center;
+  margin-top: 25px;
 }
 
 .task-item {

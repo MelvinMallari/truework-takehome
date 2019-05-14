@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import uuid from "uuid";
 
 export class TaskForm extends Component {
   state = {
@@ -11,10 +12,10 @@ export class TaskForm extends Component {
 
   handleSubmit = e => {
     e.preventDefault();
-    const newId = Object.keys(this.props.tasks).length + 1;
+    // const newId = Object.keys(this.props.tasks).length + 1;
     const newTask = {
-      id: `task-${newId}`,
-      content: `${this.state.content}`
+      id: uuid.v4(),
+      content: this.state.content
     };
     this.setState({ content: '' });
     const todoColumnId = 'column-1';

@@ -34,7 +34,10 @@ export class App extends Component {
   }
 
   addTask = (newTask, columnId) => {
-    if (!newTask.content.length) { return; } 
+    if (!newTask.content.length) { 
+      this.setState({errors: true});
+      return;
+    } 
     const [newTasks, newColumns] = this.cloneState();
 
     // Add task to task slice
@@ -53,7 +56,6 @@ export class App extends Component {
 
   delTask = (taskId, columnId) => {
     const [newTasks, newColumns] = this.cloneState();
-
     delete newTasks[taskId];
     const oldTasks = newColumns[columnId].taskIds;
     newColumns[columnId].taskIds = [...oldTasks.filter(oldTaskId => oldTaskId !== taskId)];
@@ -85,7 +87,7 @@ export class App extends Component {
   render() {
     const { columns, tasks, columnOrder, errors } = this.state;
     return (
-      <div className="columns-wrapper">
+      <div className="kanban-wrapper">
         <TaskForm tasks={tasks} addTask={this.addTask} errors={errors} />
         <Columns
           columns={columns}
