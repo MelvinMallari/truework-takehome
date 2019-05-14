@@ -2,9 +2,7 @@ import React, { Component } from 'react';
 import uuid from "uuid";
 
 export class TaskForm extends Component {
-  state = {
-    content: ''
-  };
+  state = { content: '' };
 
   onChange = e => {
     this.setState({ [e.target.name]: e.target.value });
@@ -23,20 +21,19 @@ export class TaskForm extends Component {
   };
 
   renderErrors() {
-    return this.props.errors ? <div>Please input valid task</div> : null
+    return this.props.errors ? <div className="errors">Task cannot be blank</div> : null
   }
 
   render() {
     return (
       <div className="column">
         <form className="form" onSubmit={this.handleSubmit}>
-          <header className="column-title">ADD TASK</header>
+          <header className="column-title">Add Task</header>
           <textarea
             placeholder="Add task..."
             name="content"
             value={this.state.content}
-            onChange={this.onChange}
-          />
+            onChange={this.onChange} />
           <input type="submit" value="Add" />
           {this.renderErrors()}
         </form>
