@@ -5,12 +5,24 @@ function Task(props) {
   const { task, columnId, columnOrder, delTask, movePrev, moveNext } = props;
 
   const renderNext = () => (
-    <button className="button" onClick={moveNext.bind(this, task.id, columnId)}>Next</button>
-  )
+    <button
+      className="button"
+      type="button"
+      onClick={moveNext.bind(this, task.id, columnId)}
+    >
+      Next
+    </button>
+  );
 
   const renderPrev = () => (
-    <button className="button" onClick={movePrev.bind(this, task.id, columnId)}>Previous</button>
-  )
+    <button
+      className="button"
+      type="button"
+      onClick={movePrev.bind(this, task.id, columnId)}
+    >
+      Previous
+    </button>
+  );
 
   const firstColId = 1;
   const lastColId = columnOrder.length;
@@ -19,7 +31,13 @@ function Task(props) {
     <div className="task-item">
       <div> {task.content} </div>
       <div className="button-wrapper">
-        <button className="button" onClick={delTask.bind(this, task.id, columnId)}>Delete</button>
+        <button
+          type="button"
+          className="button"
+          onClick={delTask.bind(this, task.id, columnId)}
+        >
+          Delete
+        </button>
         {parseColId(columnId) !== firstColId && renderPrev()}
         {parseColId(columnId) !== lastColId && renderNext()}
       </div>

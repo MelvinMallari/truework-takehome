@@ -4,6 +4,7 @@ import initialData from './initial-data';
 import Columns from './components/Columns';
 import TaskForm from './components/TaskForm';
 import { parseColId } from './utils/util';
+import SearchForm from './components/SearchForm';
 
 export class App extends Component {
   state = initialData;
@@ -58,6 +59,18 @@ export class App extends Component {
     newColumns[columnId].taskIds = [...oldTasks.filter(oldTaskId => oldTaskId !== taskId)];
     this.setState({ tasks: newTasks, columns: newColumns });
   };
+  
+  search = (term) =>  {
+    const termLowerCase = term.toLowerCase();
+    const filteredTaskIds = [];
+
+    Object.values(this.state.tasks).map(task => {
+      if (task.content.toLowerCase().includes(termLowerCase)) {
+        filteredTaskIds.push(task.id)
+      }
+    })
+    return filteredTaskIds;
+  }
 
   moveCol = (taskId, columnId, newColIndex) => {
     const newColumns = Object.assign({}, this.state.columns);
@@ -81,9 +94,11 @@ export class App extends Component {
   }
 
   render() {
+    debugger;
     const { columns, tasks, columnOrder, errors } = this.state;
     return (
       <div className="kanban-wrapper">
+        <SearchForm />
         <TaskForm tasks={tasks} addTask={this.addTask} errors={errors} />
         <Columns
           columns={columns}
@@ -91,8 +106,7 @@ export class App extends Component {
           columnOrder={columnOrder}
           delTask={this.delTask}
           moveNext={this.moveNext}
-          movePrev={this.movePrev}
-        />
+          movePrev={this.movePrev} />
       </div>
     );
   }

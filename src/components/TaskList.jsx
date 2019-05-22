@@ -2,19 +2,20 @@ import React from 'react';
 import Task from './Task';
 
 function TaskList(props) {
-  const { delTask, columnId, columnOrder, moveNext, movePrev } = props;
+  const { delTask, columnId, columnOrder, moveNext, movePrev, tasks } = props;
   return (
     <div>
       {' '}
-      {props.tasks.map(task => (
-        <Task 
-          task={task} 
-          key={task.id} 
-          delTask={delTask} 
-          columnId={columnId} 
+      {tasks.map(task => (
+        <Task
+          task={task}
+          key={task.id}
+          delTask={delTask}
+          columnId={columnId}
           columnOrder={columnOrder}
           movePrev={movePrev}
-          moveNext={moveNext} />
+          moveNext={moveNext}
+        />
       ))}{' '}
     </div>
   );
